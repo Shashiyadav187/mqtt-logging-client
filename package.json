@@ -1,0 +1,29 @@
+{
+  "name": "mqtt-logging-client",
+  "version": "1.0.0",
+  "description": "MQTT client to subscribe to MQTT broker and log all messages to DB",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "mocha **/*.specs.js -w --recursive --watch-extensions js",
+    "test:once": "jasmine **/**.specs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramunsk/mqtt-logging-client.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ramunsk/mqtt-logging-client/issues"
+  },
+  "homepage": "https://github.com/ramunsk/mqtt-logging-client#readme",
+  "dependencies": {
+    "mqtt": "^2.3.1"
+  },
+  "devDependencies": {
+    "jasmine": "^2.5.3",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "should": "^11.2.0"
+  }
+}
