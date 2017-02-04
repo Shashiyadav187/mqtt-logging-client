@@ -28,8 +28,10 @@ function MqttStub(){
 
 function createConfigStub(){
     return {
-        url: 'mqtt://test',
-        clientId: 'mqtt client'
+        mqtt: {
+            url: 'mqtt://test',
+            clientId: 'mqtt client'
+        }
     }
 }
 

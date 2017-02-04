@@ -4,10 +4,10 @@ let config = require('./config'),
 module.exports = {
     run: function(){
         const clientOptions = {
-            clientId: config.clientId
+            clientId: config.mqtt.clientId
         };
 
-        let client = mqtt.connect(config.url, clientOptions);
+        let client = mqtt.connect(config.mqtt.url, clientOptions);
 
         client.on('connect', function(){
             client.subscribe('#');
@@ -15,7 +15,7 @@ module.exports = {
         });
 
         function onMessageReveived(topic, message){
-            
+
         }
     }
 };
