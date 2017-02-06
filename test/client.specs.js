@@ -69,13 +69,12 @@ describe('Client should', () => {
     });
 
     describe('provice correct connection options from config file', () => {
-
         it('clientId', () => {
             client.run();
             assert.equal(mqttLib.connect.getCall(0).args[1].clientId, 'mqtt client', 'Client connects with wrong clientId');
         });
     });
- 
+
     it('subscribe to all topics', () => {
         client.run();
         mqttLibClient.raiseEvent('connect');
@@ -88,6 +87,5 @@ describe('Client should', () => {
         mqttLibClient.raiseEvent('connect');
         assert.equal(mqttLibClient.on.getCall(1).args[0], 'message', 'Client does not subscribe message event');
     });
-
 });
 

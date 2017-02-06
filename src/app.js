@@ -1,3 +1,6 @@
-const client = require('./client');
+const mqtt = require('mqtt');
+const config = require('./config');
+const db = require('./db');
+const Client = require('./client');
 
-client.run();
+new Client(config, mqtt, db).run();

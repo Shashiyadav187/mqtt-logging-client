@@ -15,7 +15,9 @@ class MqttClient {
             client.subscribe('#');
         });
 
-        client.on('message', this._onMessageReceived);
+        client.on('message', (topic, message) => {
+            this._onMessageReceived(topic, message);
+        });
     }
 
     _onMessageReceived(topic, message) {
