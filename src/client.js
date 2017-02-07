@@ -6,10 +6,10 @@ class MqttClient {
     }
 
     run() {
-        const clientOptiins = {
+        const clientOptions = {
             clientId: this._config.mqtt.clientId,
         };
-        const client = this._mqtt.connect(this._config.mqtt.url, clientOptiins);
+        const client = this._mqtt.connect(this._config.mqtt.url, clientOptions);
 
         client.on('connect', () => {
             client.subscribe('#');
