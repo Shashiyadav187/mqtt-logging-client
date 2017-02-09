@@ -1,33 +1,32 @@
-const 
-    config = require('./config'),
-    mongo = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
+const config = require('./config');
 
-module.exports = new DBClient(config.db);
+class DB {
+    constructor() {
+        const topicSchema = new mongoose.Schema({
+            topic: String,
+        }, { collection: 'topics' });
 
-function DBClient(options){
+        const logEntrySchema = new mongoose.Schema({
+            topic: String,
+            rawValue: String,
+            value: Object,
+        }, { collection: 'log' });
 
-    this.ensureTopic = function(topic){
-        mongo
-            .connect(options.url)
-            .then((db) => {
-                db.collection('topics')
-                    .findOne({topic: topic})
-                    .then((t) => {
-                        if (!t){
-                            db.collection('topics').insertOne({ topic: topic });
-                            console.log('New topic inserted');
-                        }
-                    })
-            })
-    };
-
-    this.logMessage = function(topic, message){
-        mongo.connect(options.url)
-            .then((db) => {
-                db.collection('log').insertOne({topic: topic, rawValue: message});
-            })
+        mongoose.Promise = global.Promise;
+        this._connection = mongoose.createConnection(config.db.url);
+        this._topics = this._connection.model('Topic', topicSchema);
+        this._log = this._connection.model('LogEntry', logEntrySchema);
     }
 
+    ensureTopic(topic) {
+        console.log(Object.keys(this._topics.findOne({ topic: 'a' })));
+        console.dir(`ensure topis: ${topic}`);
+    }
 
-
+    logMessage(topic, message) {
+        console.log(`logMessage("${topic}", "${message}")`);
+    }
 }
+
+module.exports = DB;
