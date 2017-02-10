@@ -20,12 +20,20 @@ class DB {
     }
 
     ensureTopic(topic) {
-        console.log(Object.keys(this._topics.findOne({ topic: 'a' })));
-        console.dir(`ensure topis: ${topic}`);
+        return this._topics
+            .findOne({ topic })
+            .then((result) => {
+                if (!result) {
+                    return this._topics.create({ topic });
+                }
+                return null;
+            });
     }
 
     logMessage(topic, message) {
-        console.log(`logMessage("${topic}", "${message}")`);
+        this
+            .ensureTopic(topic)
+            .then(this._log.create({ topic, rawValue: message }));
     }
 }
 

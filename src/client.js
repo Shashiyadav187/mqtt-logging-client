@@ -21,7 +21,6 @@ class MqttClient {
     }
 
     _onMessageReceived(topic, message) {
-        this._db.ensureTopic(topic);
         this._db.logMessage(topic, message.toString());
     }
 }
