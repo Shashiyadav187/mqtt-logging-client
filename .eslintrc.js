@@ -12,7 +12,7 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', {'devDependencies': ['**/*.specs.js']}],
         'indent': ['error', 4],
         'linebreak-style': 'off',
-        'no-underscore-dangle': ['error', { 'allowAfterThis': true }],
+        'no-underscore-dangle': 'off',
         
         //'one-var': ['error', 'always'],
         
