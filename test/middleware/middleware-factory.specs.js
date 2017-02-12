@@ -82,7 +82,45 @@ describe('Middleware should', () => {
         });
     });
 
-    it('return same value if there are no handlers for topic', () => {
-        expect(m.getValue('topic', '2')).to.equal('2');
+    ['string', 2, 5.5, { a: 'value' }, undefined, null].forEach((value) => {
+        it(`return same value if there are no middlewares for topic (${JSON.stringify(value)})`, () => {
+            expect(m.getValue('topic', value)).to.eql(value);
+        });
+    });
+
+    it('return value from middleware registered for topic', () => {
+        function plugin() {
+            this.parse = function pserse(v) {
+                return v * 2;
+            };
+        }
+
+        m.use('topic', plugin);
+
+        expect(m.getValue('topic', 2)).to.equal(4);
+    });
+
+    it('return value from middleware sequence registered for topic', () => {
+        function pluginb() {
+            this.parse = function pserse(v) {
+                return `${v}b`;
+            };
+        }
+        function pluginc() {
+            this.parse = function pserse(v) {
+                return `${v}c`;
+            };
+        }
+        function plugind() {
+            this.parse = function pserse(v) {
+                return `${v}d`;
+            };
+        }
+
+        m.use('topic', pluginb);
+        m.use('topic', pluginc);
+        m.use('topic', plugind);
+
+        expect(m.getValue('topic', 'a')).to.equal('abcd');
     });
 });

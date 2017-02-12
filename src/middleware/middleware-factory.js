@@ -5,17 +5,17 @@ class MiddlewareFactory {
     }
 
     use(topic, middleware, options) {
-        if (!(topic && typeof topic === 'string')) {
+        if (!topic || typeof topic !== 'string') {
             throw new TypeError('topic should be a not empty stirng');
         }
 
-        if (!(middleware && typeof middleware === 'function')) {
+        if (!middleware || typeof middleware !== 'function') {
             throw new TypeError('middleware should be a function or class');
         }
 
         const handler = new middleware(options);
 
-        if (!(handler.parse && typeof handler.parse === 'function')) {
+        if (!handler.parse || typeof handler.parse !== 'function') {
             throw new TypeError('middleware should have a parse() method');
         }
 
@@ -32,9 +32,13 @@ class MiddlewareFactory {
         }
 
         const handlers = this._handlers[topic];
-        if (!(handlers && handlers.length === 0)){
+        if (!handlers || (handlers && handlers.length === 0)) {
             return rawValue;
         }
+
+        return handlers.reduce((value, plugin) => {
+            return plugin.parse(value);
+        }, rawValue);
     }
 }
 
