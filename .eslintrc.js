@@ -12,9 +12,8 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', {'devDependencies': ['**/*.specs.js']}],
         'indent': ['error', 4],
         'linebreak-style': 'off',
-        'no-underscore-dangle': 'off',
-        
-        //'one-var': ['error', 'always'],
-        
+        'no-implied-eval': 'error',
+        'no-script-url': 'error',
+        'no-underscore-dangle': 'off'
     }
 }
