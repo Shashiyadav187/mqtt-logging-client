@@ -4,7 +4,8 @@
   "description": "MQTT client to subscribe to MQTT broker and log all messages to DB",
   "main": "src/app.js",
   "scripts": {
-    "test": "mocha -w --recursive --watch-extensions js './test/**/*.specs.js'"
+    "test": "mocha './test/**/*.specs.js'",
+    "test:watch": "npm test -- -w --recursive --watch-extensions js"
   },
   "repository": {
     "type": "git",
