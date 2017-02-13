@@ -5,9 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "mocha './test/**/*.specs.js'",
-    "test:watch": "npm test -- -w --recursive --watch-extensions js",
-    "test:cover": "nyc --reporter=lcov npm test",
-    "test:cover:report": "nyc mocha './test/**/*.specs.js' && nyc report --reporter=text-lcov | codacy-coverage"
+    "test:watch": "npm test -- -w --recursive --watch-extensions js"
   },
   "repository": {
     "type": "git",
@@ -25,14 +23,10 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "codacy-coverage": "2.0.1",
     "eslint": "3.15.0",
     "eslint-config-airbnb-base": "11.1.0",
     "eslint-plugin-import": "2.2.0",
-    "istanbul": "0.4.5",
     "mocha": "3.2.0",
-    "mocha-lcov-reporter": "^1.2.0",
-    "nyc": "^10.1.2",
     "proxyquire": "1.7.11",
     "sinon": "1.17.7"
   }
