@@ -1,18 +1,11 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 
+const topicSchema = require('./topic-schema');
+const logEntrySchema = require('./log-entry-schema');
+
 class DB {
     constructor() {
-        const topicSchema = new mongoose.Schema({
-            topic: String,
-        }, { collection: 'topics' });
-
-        const logEntrySchema = new mongoose.Schema({
-            topic: String,
-            rawValue: String,
-            value: Object,
-        }, { collection: 'log' });
-
         mongoose.Promise = global.Promise;
         this._connection = mongoose.createConnection(config.db.url);
         this._topics = this._connection.model('Topic', topicSchema);
