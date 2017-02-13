@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha './test/**/*.specs.js'",
     "test:watch": "npm test -- -w --recursive --watch-extensions js",
-    "test:cover": "nyc --reporter=text-lcov npm test",
-    "test:cover:report": "npm run test:cover | codacity-coverage"
+    "test:cover": "nyc --reporter=lcov npm test",
+    "test:cover:report": "nyc mocha './test/**/*.specs.js' && nyc report --reporter=text-lcov | codacy-coverage"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "eslint-plugin-import": "2.2.0",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
+    "mocha-lcov-reporter": "^1.2.0",
     "nyc": "^10.1.2",
     "proxyquire": "1.7.11",
     "sinon": "1.17.7"
