@@ -19,7 +19,7 @@
   "homepage": "https://github.com/ramunsk/mqtt-logging-client#readme",
   "dependencies": {
     "mongoose": "4.8.1",
-    "mqtt": "2.3.1"
+    "mqtt": "2.15.0"
   },
   "devDependencies": {
     "chai": "3.5.0",
